@@ -1,7 +1,16 @@
 import React from "react";
 import { ScCartItem, ScCartItemDetails } from "./scParts";
+import { useContext } from "react";
+import { CartContext } from "./contexts/CartContext";
 
 const Item = (props) => {
+
+
+  const {removeItem}=useContext(CartContext);
+  /*const handleRemoveItem = () => {
+    removeItem(props.item);
+  };*/
+
   return (
     <ScCartItem>
       <img src={props.image} alt={`${props.title} book`} />
@@ -9,7 +18,7 @@ const Item = (props) => {
       <ScCartItemDetails>
         <h2>{props.title}</h2>
         <p>$ {props.price}</p>
-        <button>Remove from cart</button>
+        <button onClick={()=>removeItem(props)}>Remove from cart</button> {/*aynı id olursa ikisini birden çıkarıyo*/}
       </ScCartItemDetails>
     </ScCartItem>
   );
